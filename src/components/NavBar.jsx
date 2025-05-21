@@ -16,7 +16,7 @@ const NavBar = () => {
   ];
 
   return (
-    <div className="navbar bg-white shadow-sm rounded-b px-4 lg:px-10 py-3">
+    <div className="navbar bg-white shadow-sm rounded-b px-2 lg:px-10 ">
       {/* Left */}
       <div className="navbar-start">
         {/* Mobile Menu */}

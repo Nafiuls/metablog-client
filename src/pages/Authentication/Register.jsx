@@ -59,7 +59,7 @@ const Register = () => {
   };
 
   return (
-    <div className=" py-10 px-4 flex flex-col items-center bg-gray-50">
+    <div className=" px-4 flex flex-col items-center justify-center bg-gray-50">
       <Header
         heading="Welcome to MetaBlogs"
         subheading="Register to share your voice and connect with a like-minded community."
