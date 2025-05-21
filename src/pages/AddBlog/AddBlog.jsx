@@ -21,8 +21,8 @@ const AddBlog = () => {
       );
       return data;
     },
-    onSuccess: (data) => toast.success("Blog Posted Successfully!"),
-    onError: (error) => toast.error("Something Went Wrong!"),
+    onSuccess: () => toast.success("Blog Posted Successfully!"),
+    onError: () => toast.error("Something Went Wrong!"),
   });
   // handle blog
   const handleSubmit = async (e) => {
@@ -47,6 +47,7 @@ const AddBlog = () => {
     };
     await createBlog(blogData);
     form.reset();
+    setCategory("");
   };
   return (
     <div className="flex flex-col justify-center items-center">
@@ -100,6 +101,7 @@ const AddBlog = () => {
             <option value="travel">Travel</option>
             <option value="education">Education</option>
             <option value="food">Food</option>
+            <option value="gaming">Gaming</option>
           </select>
         </div>
         {/* short description */}
