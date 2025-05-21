@@ -7,6 +7,7 @@ import Feature from "../pages/Feature/Feature";
 import Wishlist from "../pages/Wishlist/Wishlist";
 import Login from "../pages/Authentication/Login";
 import Register from "../pages/Authentication/Register";
+import Details from "../pages/Details/Details";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
         element: <AddBlog />,
       },
       {
+        path: "/blog/:id",
+        element: <Details />,
+      },
+      {
         path: "/allBlogs",
         element: <AllBlogs />,
       },
@@ -32,6 +37,10 @@ const router = createBrowserRouter([
       {
         path: "/wishlist",
         element: <Wishlist />,
+      },
+      {
+        path: "/update/:id",
+        element: <h1>update</h1>,
       },
       {
         path: "/login",
