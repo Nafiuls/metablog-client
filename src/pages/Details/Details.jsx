@@ -48,11 +48,11 @@ const Details = () => {
       );
       return data;
     },
-    onSuccess: (res) => {
+    onSuccess: () => {
       toast.success("Comment Posted");
       queryClient.invalidateQueries({ queryKey: ["comments"] });
     },
-    onError: (err) => console.log(err),
+    onError: () => toast.error("Something Went Wrong!"),
   });
 
   const handleCommentSubmit = async (e) => {
