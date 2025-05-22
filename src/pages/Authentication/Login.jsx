@@ -2,25 +2,34 @@ import React from "react";
 import Header from "../../utils/Header";
 import { MdOutlineEmail, MdOutlinePassword } from "react-icons/md";
 import { AiOutlineGoogle } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import UseAuth from "../../utils/hooks/UseAuth";
 import toast from "react-hot-toast";
 
 const Login = () => {
   const { handleSignIn, handleGoogle } = UseAuth();
+  const location = useLocation();
+  const from = location.state?.from || "/";
+  const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
     handleSignIn(email, password)
-      .then(() => toast.success("Login Successfull!"))
+      .then(() => {
+        toast.success("Login Successfull!");
+        navigate(from, { replace: true });
+      })
       .catch(() => toast.error("Something Went Wrong!"));
   };
   // handle google
   const handleSocial = () => {
     handleGoogle()
-      .then(() => toast.success("Logged in with Google!"))
+      .then(() => {
+        toast.success("Logged in with Google!");
+        navigate(from, { replace: true });
+      })
       .catch(() => toast.error("Google Login Failed!"));
   };
 

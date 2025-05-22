@@ -9,6 +9,7 @@ import Login from "../pages/Authentication/Login";
 import Register from "../pages/Authentication/Register";
 import Details from "../pages/Details/Details";
 import UpdateBlog from "../pages/Update/UpdateBlog";
+import Private from "../utils/Private";
 
 const router = createBrowserRouter([
   {
@@ -21,7 +22,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/addBlogs",
-        element: <AddBlog />,
+        element: (
+          <Private>
+            <AddBlog />
+          </Private>
+        ),
       },
       {
         path: "/blog/:id",
@@ -37,11 +42,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/wishlist",
-        element: <Wishlist />,
+        element: (
+          <Private>
+            <Wishlist />
+          </Private>
+        ),
       },
       {
         path: "/update/:id",
-        element: <UpdateBlog />,
+        element: (
+          <Private>
+            <UpdateBlog />
+          </Private>
+        ),
       },
       {
         path: "/login",
