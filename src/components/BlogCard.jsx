@@ -1,8 +1,13 @@
 import React from "react";
 import { FiInfo, FiPlus } from "react-icons/fi";
 import { Link } from "react-router-dom";
+import UseAuth from "../utils/hooks/UseAuth";
+import { useMutation } from "@tanstack/react-query";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 const BlogCard = ({ blog }) => {
+  const { user } = UseAuth();
   const {
     _id,
     title,
@@ -12,6 +17,35 @@ const BlogCard = ({ blog }) => {
     longDescription,
     author,
   } = blog || {};
+
+  // add wislist to database
+  const { mutateAsync, isPending } = useMutation({
+    mutationFn: async (wishlistData) => {
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_BASE_URL}/add-wishlist`,
+        wishlistData
+      );
+      return data;
+    },
+    onSuccess: () => toast.success("Added to wishlist!"),
+    onError: () => toast.error("Already in wishlist!"),
+  });
+
+  // add to wishlist
+  const handleWishlist = async () => {
+    const wishlistData = {
+      id: _id,
+      title,
+      image,
+      category,
+      shortDescription,
+      longDescription,
+      author,
+      email: user?.email,
+    };
+    await mutateAsync(wishlistData);
+  };
+
   return (
     <div className="bg-white shadow-sm rounded-md overflow-hidden flex flex-col h-full">
       <figure>
@@ -43,9 +77,12 @@ const BlogCard = ({ blog }) => {
               Details{" "}
             </button>
           </Link>
-          <button className="flex items-center gap-1 uppercase bg-white border rounded-full py-2 px-6 text-black cursor-pointer hover:border-white hover:bg-black hover:text-white transition ">
+          <button
+            onClick={handleWishlist}
+            className="flex items-center gap-1 uppercase bg-white border rounded-full py-2 px-6 text-black cursor-pointer hover:border-white hover:bg-black hover:text-white transition "
+          >
             <FiPlus size={20} />
-            Watchlist
+            {isPending ? "Adding..." : "Wishlist"}
           </button>
         </div>
       </div>
