@@ -70,6 +70,8 @@ const Details = () => {
     // Clear textarea on submit; save function to be implemented later
   };
 
+  if (isLoading) return <h1>loading....</h1>;
+
   return (
     <div className="py-10">
       <div>

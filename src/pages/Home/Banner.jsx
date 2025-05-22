@@ -16,17 +16,24 @@ const Banner = () => {
     >
       <div className="max-w-4xl text-center text-white bg-opacity-50 p-6 rounded-md">
         <h1 className="text-3xl sm:text-4xl font-bold text-white text-center">
-          "Welcome to MetaBlog — Your Space to Explore & Share Ideas"
+          Write Freely. Read Endlessly.
         </h1>
         <h1 className="text-white text-base sm:text-lg max-w-xl mt-4 mx-auto text-center mb-8">
-          "Dive into the latest trends, stories, and insights from creators
-          around the world."
+          Welcome to Meta Blog — where your stories inspire and your curiosity
+          thrives.
         </h1>
-        <Link to={"/allBlogs"}>
-          <button className="flex items-center justify-center py-2 px-7 font-semibold mx-auto border hover:border-white transition cursor-pointer rounded-full gap-3 bg-white text-black hover:bg-transparent hover:text-white">
-            Explore <FaArrowRight />
-          </button>
-        </Link>
+        <div className="flex items-center justify-center gap-5 mt-10">
+          <Link to={"/allBlogs"}>
+            <button className="flex items-center justify-center py-2 px-7 font-semibold mx-auto border hover:border-white transition cursor-pointer rounded-full gap-3 bg-white text-black hover:bg-transparent hover:text-white">
+              Read Blogs <FaArrowRight />
+            </button>
+          </Link>
+          <Link to={"/addBlogs"}>
+            <button className="flex items-center justify-center py-2 px-7 font-semibold mx-auto border hover:border-white transition cursor-pointer rounded-full gap-3 bg-trasnparent text-white hover:bg-white hover:text-black">
+              Post A Blog <FaArrowRight />
+            </button>
+          </Link>
+        </div>
       </div>
     </div>
   );
