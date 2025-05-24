@@ -50,7 +50,7 @@ const AddBlog = () => {
     setCategory("");
   };
   return (
-    <div className="flex flex-col justify-center items-center">
+    <div className="py-10 flex flex-col justify-center items-center">
       <Header
         heading={"Create a New Blog Post"}
         subheading={
