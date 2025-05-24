@@ -4,12 +4,14 @@ import axios from "axios";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import Header from "../../utils/Header";
 import { FaRegTrashAlt } from "react-icons/fa";
+import { FaMagnifyingGlass } from "react-icons/fa6";
 import {
   getCoreRowModel,
   useReactTable,
   flexRender,
 } from "@tanstack/react-table";
 import toast from "react-hot-toast";
+import { Link, useNavigate } from "react-router-dom";
 
 const Wishlist = () => {
   const { user } = UseAuth();
@@ -53,6 +55,8 @@ const Wishlist = () => {
     refetch()
   );
 
+  // handle navigate
+
   // memoize columns and data
   const columns = useMemo(
     () => [
@@ -76,13 +80,21 @@ const Wishlist = () => {
         header: "Actions",
         cell: ({ row }) => {
           return (
-            <button
-              onClick={() => handleDelete(row.original._id)}
-              className="flex items-center gap-2 cursor-pointer text-red-600 border border-red-600 hover:bg-red-600 hover:text-white px-3 py-1 rounded-md transition duration-200 text-xs"
-            >
-              <FaRegTrashAlt />
-              Delete
-            </button>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => handleDelete(row.original._id)}
+                className="flex items-center gap-2 cursor-pointer text-red-600 border border-red-600 hover:bg-red-600 hover:text-white px-3 py-1 rounded-md transition duration-200 text-xs"
+              >
+                <FaRegTrashAlt />
+                Delete
+              </button>
+              <Link to={`/blog/${row.original.id}`}>
+                <button className="flex items-center gap-2 cursor-pointer text-green-600 border border-green-600 hover:bg-green-600 hover:text-white px-3 py-1 rounded-md transition duration-200 text-xs">
+                  <FaMagnifyingGlass />
+                  Details
+                </button>
+              </Link>
+            </div>
           );
         }, // Example JSX cell
       },
@@ -130,7 +142,7 @@ const Wishlist = () => {
                 key={row.id}
                 className="border-t hover:bg-gray-50 transition-colors"
               >
-                {row.getVisibleCells().map((cell, index) => (
+                {row.getVisibleCells().map((cell) => (
                   <td key={cell.id} className="px-4 py-3">
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </td>

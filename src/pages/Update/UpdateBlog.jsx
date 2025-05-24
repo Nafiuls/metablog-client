@@ -72,9 +72,9 @@ const UpdateBlog = () => {
   return (
     <div className="flex flex-col justify-center items-center">
       <Header
-        heading={"Create a New Blog Post"}
+        heading={"Update Your Existing Blog Post"}
         subheading={
-          "Fill in the details below and share your content with the MetaBlog community."
+          "Update the details below and share your content with the MetaBlog community."
         }
       />
       <form
@@ -82,7 +82,7 @@ const UpdateBlog = () => {
         onSubmit={handleUpdata}
       >
         <h2 className="text-xl font-semibold text-center text-gray-800">
-          Post A Blog
+          Update A Blog
         </h2>
         {/* title */}
         <div className="flex items-center border-b border-gray-300 focus-within:border-black transition">
@@ -147,7 +147,7 @@ const UpdateBlog = () => {
           ></textarea>
         </div>
         <button className="flex gap-4 items-center justify-center bg-black text-white border py-2 w-full rounded-sm hover:bg-white hover:border-black hover:text-black cursor-pointer uppercase transition">
-          {isPending ? "posting" : "creat post"}
+          {isPending ? "posting" : "update post"}
           <BiSend size={20} />
         </button>
       </form>
