@@ -1,13 +1,15 @@
 import React, { useMemo } from "react";
 import UseAuth from "../../utils/hooks/UseAuth";
 import axios from "axios";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import Header from "../../utils/Header";
+import { FaRegTrashAlt } from "react-icons/fa";
 import {
   getCoreRowModel,
   useReactTable,
   flexRender,
 } from "@tanstack/react-table";
+import toast from "react-hot-toast";
 
 const Wishlist = () => {
   const { user } = UseAuth();
@@ -18,10 +20,38 @@ const Wishlist = () => {
     return data;
   };
 
-  const { data: wishlist, isLoading } = useQuery({
+  const {
+    data: wishlist,
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["wishlist", user?.email],
     queryFn: fetchUserWishlist,
   });
+
+  // delete a wishlist
+  const { mutateAsync } = useMutation({
+    mutationFn: async (id) => {
+      const { data } = await axios.delete(
+        `${import.meta.env.VITE_BASE_URL}/delete-wishlist/${id}`
+      );
+      return data;
+    },
+    onSuccess: () => toast.success("Wishlist deleted successfully!"),
+    onError: (error) => {
+      console.error("Error deleting wishlist:", error);
+      toast.error("Failed to delete wishlist.");
+    },
+  });
+  // delete wihslist function
+
+  const handleDelete = React.useCallback(
+    (id) => {
+      mutateAsync(id);
+    },
+    [mutateAsync],
+    refetch()
+  );
 
   // memoize columns and data
   const columns = useMemo(
@@ -48,15 +78,16 @@ const Wishlist = () => {
           return (
             <button
               onClick={() => handleDelete(row.original._id)}
-              className="cursor-pointer text-red-600 border border-red-600 hover:bg-red-600 hover:text-white px-3 py-1 rounded-md transition duration-200 text-xs"
+              className="flex items-center gap-2 cursor-pointer text-red-600 border border-red-600 hover:bg-red-600 hover:text-white px-3 py-1 rounded-md transition duration-200 text-xs"
             >
+              <FaRegTrashAlt />
               Delete
             </button>
           );
         }, // Example JSX cell
       },
     ],
-    []
+    [handleDelete]
   );
   const data = useMemo(() => wishlist || [], [wishlist]);
   // react-table instance
@@ -65,12 +96,6 @@ const Wishlist = () => {
     data,
     getCoreRowModel: getCoreRowModel(),
   });
-
-  console.log(tableInstance.getHeaderGroups());
-
-  const handleDelete = (id) => {
-    console.log(id);
-  };
 
   if (isLoading) return <h1>Loading...</h1>;
 
