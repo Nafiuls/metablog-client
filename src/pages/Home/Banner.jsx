@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const Banner = () => {
   const title = " Write Freely. Read Endlessly.";
   const words = title.split(" ");
-  console.log(words);
+
   return (
     <div
       style={{

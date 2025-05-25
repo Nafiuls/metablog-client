@@ -9,6 +9,7 @@ import {
 } from "firebase/auth";
 import React, { createContext, useEffect, useState } from "react";
 import { auth } from "../Firebase/firebase.config";
+import axios from "axios";
 // eslint-disable-next-line react-refresh/only-export-components
 export const authContext = createContext();
 
@@ -58,19 +59,30 @@ const AuthProvider = ({ children }) => {
 
   //   observer
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      if (currentUser) {
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+      console.log("current user---->", currentUser);
+      if (currentUser?.email) {
         setUser(currentUser);
+        const { data } = await axios.post(
+          `${import.meta.env.VITE_BASE_URL}/jwt`,
+          {
+            email: currentUser?.email,
+          },
+          { withCredentials: true }
+        );
       } else {
-        setUser(null);
+        setUser(currentUser);
+        const { data } = await axios.get(
+          `${import.meta.env.VITE_BASE_URL}/logout`,
+          { withCredentials: true }
+        );
       }
       setLoading(false);
-      console.log("current user---->", currentUser);
       return () => {
         unsubscribe();
       };
     });
-  }, []);
+  }, [user]);
   const data = {
     user,
     setUser,

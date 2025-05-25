@@ -24,13 +24,14 @@ const Login = () => {
       .catch(() => toast.error("Something Went Wrong!"));
   };
   // handle google
-  const handleSocial = () => {
-    handleGoogle()
-      .then(() => {
-        toast.success("Logged in with Google!");
-        navigate(from, { replace: true });
-      })
-      .catch(() => toast.error("Google Login Failed!"));
+  const handleSocial = async () => {
+    try {
+      await handleGoogle();
+      toast.success("Google Signin Successfull");
+    } catch (error) {
+      toast.error("Something Went Wrong");
+      console.log(error);
+    }
   };
 
   return (

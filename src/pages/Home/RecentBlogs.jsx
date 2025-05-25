@@ -18,7 +18,6 @@ const RecentBlogs = () => {
   });
 
   if (isLoading) return <p>Loading...</p>;
-  console.log(blogs);
 
   return (
     <div>
