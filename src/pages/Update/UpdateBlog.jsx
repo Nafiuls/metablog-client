@@ -12,6 +12,15 @@ import toast from "react-hot-toast";
 const UpdateBlog = () => {
   const { id } = useParams();
   const [category, setCategory] = useState("");
+  const [fileName, setFileName] = useState("No File Chosen");
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setFileName(file.name);
+    } else {
+      setFileName("No File Chosen");
+    }
+  };
   const queryClient = useQueryClient();
   const fetchBlogData = async () => {
     const { data } = await axios.get(
@@ -53,12 +62,25 @@ const UpdateBlog = () => {
     e.preventDefault();
     const form = e.target;
     const title = form.title.value;
-    const image = form.image.value;
+    const image = form.image.files[0];
+    if (!image) {
+      toast.error("Please choose an image to update the blog post.");
+      return;
+    }
+    const formData = new FormData();
+    formData.append("image", image);
+    const imgbbKey = import.meta.env.VITE_IMGBB_API_KEY;
+    const res = await axios.post(
+      `https://api.imgbb.com/1/upload?key=${imgbbKey}`,
+      formData
+    );
+    const imageUrl = res.data.data.url;
     const shortDescription = form.shortdes.value;
     const longDescription = form.longdes.value;
+
     const blogData = {
       title,
-      image,
+      image: imageUrl,
       category,
       shortDescription,
       longDescription,
@@ -70,7 +92,7 @@ const UpdateBlog = () => {
     return <div>Loading...</div>;
   }
   return (
-    <div className="flex flex-col justify-center items-center">
+    <div className="flex flex-col py-10 justify-center items-center">
       <Header
         heading={"Update Your Existing Blog Post"}
         subheading={
@@ -97,21 +119,31 @@ const UpdateBlog = () => {
           />
         </div>
         {/* image */}
-        <div className="flex items-center border-b border-gray-300 focus-within:border-black transition">
+        <div className="flex items-center gap-3">
           <FiImage size={20} className="text-gray-500" />
+          <label
+            htmlFor="image"
+            className="bg-black text-white text-sm px-4 py-2 rounded-full cursor-pointer hover:bg-gray-800 transition"
+          >
+            Choose Image
+          </label>
           <input
-            defaultValue={singleBlog?.image}
-            className="w-full py-2 px-3 outline-none text-sm text-gray-700 placeholder-gray-400"
-            type="text"
+            type="file"
+            id="image"
             name="image"
-            placeholder="Image Url"
-            required
+            accept="image/*"
+            className="hidden"
+            onChange={handleFileChange}
           />
+          <span className="text-sm text-gray-600 truncate max-w-[200px]">
+            {fileName}
+          </span>
         </div>
         {/* category */}
         <div className=" flex items-center border-b border-gray-300 focus-within:border-black transition">
           <MdCategory size={20} className="text-gray-500" />
           <select
+            required
             id="category"
             value={category}
             onChange={(e) => setCategory(e.target.value)}

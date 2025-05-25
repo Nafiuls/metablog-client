@@ -71,7 +71,7 @@ const AllBlogs = () => {
               onChange={(e) => setCategory(e.target.value)}
               className="w-full py-2 px-3 outline-none text-sm text-gray-700 placeholder-gray-400"
             >
-              <option value=""> Choose a category </option>
+              <option value=""> Show all </option>
               <option value="tech">Technology</option>
               <option value="lifestyle">Lifestyle</option>
               <option value="travel">Travel</option>
