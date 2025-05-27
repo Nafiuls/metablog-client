@@ -12,13 +12,13 @@ import {
 } from "@tanstack/react-table";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
+import useAxiosSecure from "../../utils/hooks/UseAxiosSecure";
 
 const Wishlist = () => {
   const { user } = UseAuth();
+  const axiosSecure = useAxiosSecure();
   const fetchUserWishlist = async () => {
-    const { data } = await axios.get(
-      `${import.meta.env.VITE_BASE_URL}/wishlist/${user?.email}`
-    );
+    const { data } = await axiosSecure.get(`/wishlist/${user?.email}`);
     return data;
   };
 

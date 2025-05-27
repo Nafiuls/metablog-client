@@ -8,9 +8,13 @@ import { TbArticle } from "react-icons/tb";
 import { useParams } from "react-router-dom";
 import Header from "../../utils/Header";
 import toast from "react-hot-toast";
+import UseAuth from "../../utils/hooks/UseAuth";
+import useAxiosSecure from "../../utils/hooks/UseAxiosSecure";
 
 const UpdateBlog = () => {
+  const { user } = UseAuth();
   const { id } = useParams();
+  const axiosSecure = useAxiosSecure();
   const [category, setCategory] = useState("");
   const [fileName, setFileName] = useState("No File Chosen");
   const handleFileChange = (e) => {
@@ -40,8 +44,8 @@ const UpdateBlog = () => {
 
   //   update blog data
   const updateBlogData = async (blogData) => {
-    const { data } = await axios.patch(
-      `${import.meta.env.VITE_BASE_URL}/update-blog/${id}`,
+    const { data } = await axiosSecure.patch(
+      `/update-blog/${id}/${user?.email}`,
       blogData
     );
     refetch();

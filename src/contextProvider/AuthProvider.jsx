@@ -54,7 +54,7 @@ const AuthProvider = ({ children }) => {
 
   //   log out a user
   const handleLogout = () => {
-    signOut(auth);
+    return signOut(auth);
   };
 
   //   observer

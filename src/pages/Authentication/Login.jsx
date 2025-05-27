@@ -28,6 +28,7 @@ const Login = () => {
     try {
       await handleGoogle();
       toast.success("Google Signin Successfull");
+      navigate(from, { replace: true });
     } catch (error) {
       toast.error("Something Went Wrong");
       console.log(error);

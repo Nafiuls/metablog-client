@@ -8,9 +8,11 @@ import UseAuth from "../../utils/hooks/UseAuth";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import toast from "react-hot-toast";
+import useAxiosSecure from "../../utils/hooks/UseAxiosSecure";
 
 const AddBlog = () => {
   const { user } = UseAuth();
+  const axiosSecure = useAxiosSecure();
   const [category, setCategory] = useState("");
   const [fileName, setFileName] = useState("No File Chosen");
 
@@ -25,8 +27,8 @@ const AddBlog = () => {
   // blog post mutation
   const { mutateAsync: createBlog, isPending } = useMutation({
     mutationFn: async (blogData) => {
-      const { data } = await axios.post(
-        `${import.meta.env.VITE_BASE_URL}/post-blog`,
+      const { data } = await axiosSecure.post(
+        `/post-blog/${user?.email}`,
         blogData
       );
       return data;
