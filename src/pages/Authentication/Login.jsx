@@ -94,7 +94,7 @@ const Login = () => {
         <button
           onClick={handleSocial}
           type="button"
-          className="flex items-center justify-center gap-3 bg-red-500 text-white py-3 rounded-md hover:bg-red-600 transition"
+          className="flex cursor-pointer items-center justify-center gap-3 bg-black text-white py-3 rounded-md hover:bg-red-600 transition"
         >
           <AiOutlineGoogle size={24} />
           Sign in with Google

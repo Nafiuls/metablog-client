@@ -144,7 +144,7 @@ const Register = () => {
         <button
           type="button"
           onClick={handleSocial}
-          className="flex items-center justify-center cursor-pointer gap-3 bg-red-500 text-white py-3 rounded-md hover:bg-red-600 transition"
+          className="flex items-center  justify-center cursor-pointer gap-3 bg-black text-white py-3 rounded-md hover:bg-red-600 transition"
         >
           <AiOutlineGoogle size={24} />
           Sign Up with Google

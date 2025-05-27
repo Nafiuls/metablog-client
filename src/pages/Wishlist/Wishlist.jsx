@@ -112,7 +112,7 @@ const Wishlist = () => {
   if (isLoading) return <h1>Loading...</h1>;
 
   return (
-    <div className="py-10 flex flex-col items-center">
+    <div className="py-10 px-4 flex flex-col items-center">
       <Header
         heading={"Your Wishlist Blogs"}
         subheading={

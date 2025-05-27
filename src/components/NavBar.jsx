@@ -93,7 +93,7 @@ const NavBar = () => {
             {/* Logout Button */}
             <button
               onClick={handleLogout}
-              className="flex items-center gap-2 bg-black text-white hover:bg-white hover:text-black border border-black transition-all py-2 px-6 rounded-full text-sm"
+              className="flex cursor-pointer items-center gap-2 bg-black text-white hover:bg-white hover:text-black border border-black transition-all py-2 px-6 rounded-full text-sm"
             >
               <GiExitDoor />
               Logout
@@ -101,7 +101,7 @@ const NavBar = () => {
           </div>
         ) : (
           <Link to="/login">
-            <button className="flex items-center gap-2 bg-black text-white hover:bg-white hover:text-black border border-black transition-all py-2 px-6 rounded-full text-sm">
+            <button className="flex cursor-pointer items-center gap-2 bg-black text-white hover:bg-white hover:text-black border border-black transition-all py-2 px-6 rounded-full text-sm">
               <FaRegUser />
               Login
             </button>

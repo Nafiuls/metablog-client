@@ -72,7 +72,7 @@ const Feature = () => {
   if (isLoading) return <p>Loading....</p>;
 
   return (
-    <div className="py-10 flex flex-col justify-center">
+    <div className="py-10 px-4 flex flex-col justify-center">
       <Header
         heading={"Hot Picks & Cool Clicks"}
         subheading={

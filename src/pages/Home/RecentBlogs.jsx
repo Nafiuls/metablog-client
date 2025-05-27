@@ -21,7 +21,7 @@ const RecentBlogs = () => {
 
   return (
     <div>
-      <div className="max-w-6xl mt-20 mx-auto">
+      <div className="max-w-6xl px-4 mt-20 mx-auto">
         <Header
           heading={"Latest from the Blog"}
           subheading={
