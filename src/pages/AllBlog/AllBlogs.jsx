@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import BlogCard from "../../components/BlogCard";
 import { MdCategory } from "react-icons/md";
+import Title from "../../utils/Title";
 
 const AllBlogs = () => {
   const [search, setSearch] = useState("");
@@ -34,6 +35,7 @@ const AllBlogs = () => {
   if (isLoading) return <p>Loading..</p>;
   return (
     <div className="py-10 flex flex-col items-center">
+      <Title title={"All Blogs"} />
       <Header
         heading={"The Blog Buffet 🍽️"}
         subheading={

@@ -13,6 +13,7 @@ import {
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import useAxiosSecure from "../../utils/hooks/UseAxiosSecure";
+import Title from "../../utils/Title";
 
 const Wishlist = () => {
   const { user } = UseAuth();
@@ -113,6 +114,7 @@ const Wishlist = () => {
 
   return (
     <div className="py-10 px-4 flex flex-col items-center">
+      <Title title={"Wishlisted Blogs"} />
       <Header
         heading={"Your Wishlist Blogs"}
         subheading={

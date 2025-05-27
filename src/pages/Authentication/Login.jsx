@@ -5,6 +5,7 @@ import { AiOutlineGoogle } from "react-icons/ai";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import UseAuth from "../../utils/hooks/UseAuth";
 import toast from "react-hot-toast";
+import Title from "../../utils/Title";
 
 const Login = () => {
   const { handleSignIn, handleGoogle } = UseAuth();
@@ -37,6 +38,7 @@ const Login = () => {
 
   return (
     <div className="min-h-screen pt-10 px-4 flex flex-col items-center bg-gray-50">
+      <Title title={"Login"} />
       <Header
         heading="Welcome Back to MetaBlogs"
         subheading="Log in to share your voice, explore new stories, and connect with writers around the world."

@@ -10,6 +10,7 @@ import Header from "../../utils/Header";
 import toast from "react-hot-toast";
 import UseAuth from "../../utils/hooks/UseAuth";
 import useAxiosSecure from "../../utils/hooks/UseAxiosSecure";
+import Title from "../../utils/Title";
 
 const UpdateBlog = () => {
   const { user } = UseAuth();
@@ -97,6 +98,7 @@ const UpdateBlog = () => {
   }
   return (
     <div className="flex flex-col py-10 justify-center items-center">
+      <Title title={"Update Blog"} />
       <Header
         heading={"Update Your Existing Blog Post"}
         subheading={

@@ -10,6 +10,7 @@ import { AiOutlineGoogle } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
 import UseAuth from "../../utils/hooks/UseAuth";
 import toast from "react-hot-toast";
+import Title from "../../utils/Title";
 
 const Register = () => {
   const { handleRegister, handleGoogle, manageProfile } = UseAuth();
@@ -60,6 +61,7 @@ const Register = () => {
 
   return (
     <div className=" px-4 flex flex-col items-center justify-center bg-gray-50">
+      <Title title={"Register"} />
       <Header
         heading="Welcome to MetaBlogs"
         subheading="Register to share your voice and connect with a like-minded community."

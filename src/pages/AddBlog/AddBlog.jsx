@@ -9,6 +9,7 @@ import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import toast from "react-hot-toast";
 import useAxiosSecure from "../../utils/hooks/UseAxiosSecure";
+import Title from "../../utils/Title";
 
 const AddBlog = () => {
   const { user } = UseAuth();
@@ -75,6 +76,7 @@ const AddBlog = () => {
   };
   return (
     <div className="py-10 flex flex-col justify-center items-center">
+      <Title title={"Add Blog"} />
       <Header
         heading={"Create a New Blog Post"}
         subheading={

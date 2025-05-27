@@ -9,6 +9,7 @@ import {
   useReactTable,
   flexRender,
 } from "@tanstack/react-table";
+import Title from "../../utils/Title";
 
 const Feature = () => {
   const featureBlogs = async () => {
@@ -73,6 +74,7 @@ const Feature = () => {
 
   return (
     <div className="py-10 px-4 flex flex-col justify-center">
+      <Title title={"Featured Blogs"} />
       <Header
         heading={"Hot Picks & Cool Clicks"}
         subheading={
