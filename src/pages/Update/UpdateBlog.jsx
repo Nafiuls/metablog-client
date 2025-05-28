@@ -11,6 +11,7 @@ import toast from "react-hot-toast";
 import UseAuth from "../../utils/hooks/UseAuth";
 import useAxiosSecure from "../../utils/hooks/UseAxiosSecure";
 import Title from "../../utils/Title";
+import Loading from "../../utils/Loading";
 
 const UpdateBlog = () => {
   const { user } = UseAuth();
@@ -94,7 +95,7 @@ const UpdateBlog = () => {
     form.reset();
   };
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
   return (
     <div className="flex flex-col py-10 justify-center items-center">

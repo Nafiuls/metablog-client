@@ -14,6 +14,7 @@ import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import useAxiosSecure from "../../utils/hooks/UseAxiosSecure";
 import Title from "../../utils/Title";
+import Loading from "../../utils/Loading";
 
 const Wishlist = () => {
   const { user } = UseAuth();
@@ -110,7 +111,7 @@ const Wishlist = () => {
     getCoreRowModel: getCoreRowModel(),
   });
 
-  if (isLoading) return <h1>Loading...</h1>;
+  if (isLoading) return <Loading />;
 
   return (
     <div className="py-10 px-4 flex flex-col items-center">

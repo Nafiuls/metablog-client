@@ -5,6 +5,7 @@ import axios from "axios";
 import BlogCard from "../../components/BlogCard";
 import { MdCategory } from "react-icons/md";
 import Title from "../../utils/Title";
+import Loading from "../../utils/Loading";
 
 const AllBlogs = () => {
   const [search, setSearch] = useState("");
@@ -32,7 +33,7 @@ const AllBlogs = () => {
 
   // filter by category
 
-  if (isLoading) return <p>Loading..</p>;
+  if (isLoading) return <Loading />;
   return (
     <div className="py-10 flex flex-col items-center">
       <Title title={"All Blogs"} />
@@ -85,11 +86,15 @@ const AllBlogs = () => {
         </div>
       </div>
       {/* all blogs card container */}
-      <div className="p-4 grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-5 max-w-6xl mx-auto">
-        {allBlogs?.map((blog) => (
-          <BlogCard key={blog._id} blog={blog} />
-        ))}
-      </div>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <div className="p-4 grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-5 max-w-6xl mx-auto">
+          {allBlogs?.map((blog) => (
+            <BlogCard key={blog._id} blog={blog} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };

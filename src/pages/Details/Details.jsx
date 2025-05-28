@@ -4,6 +4,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import UseAuth from "../../utils/hooks/UseAuth";
 import toast from "react-hot-toast";
+import Loading from "../../utils/Loading";
 
 const Details = () => {
   const { user } = UseAuth();
@@ -69,7 +70,7 @@ const Details = () => {
     // Clear textarea on submit; save function to be implemented later
   };
 
-  if (isLoading) return <h1>loading....</h1>;
+  if (isLoading) return <Loading />;
 
   return (
     <div className="py-10">

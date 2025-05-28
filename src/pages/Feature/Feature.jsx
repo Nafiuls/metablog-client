@@ -10,6 +10,7 @@ import {
   flexRender,
 } from "@tanstack/react-table";
 import Title from "../../utils/Title";
+import Loading from "../../utils/Loading";
 
 const Feature = () => {
   const featureBlogs = async () => {
@@ -70,7 +71,7 @@ const Feature = () => {
     getCoreRowModel: getCoreRowModel(),
   });
 
-  if (isLoading) return <p>Loading....</p>;
+  if (isLoading) return <Loading />;
 
   return (
     <div className="py-10 px-4 flex flex-col justify-center">

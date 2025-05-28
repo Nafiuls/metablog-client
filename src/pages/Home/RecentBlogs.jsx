@@ -3,6 +3,7 @@ import Header from "../../utils/Header";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import BlogCard from "../../components/BlogCard";
+import Loading from "../../utils/Loading";
 
 const RecentBlogs = () => {
   const fetchBlogs = async () => {
@@ -17,7 +18,7 @@ const RecentBlogs = () => {
     queryFn: fetchBlogs,
   });
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <Loading />;
 
   return (
     <div>
